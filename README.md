@@ -6,6 +6,8 @@ A Netflix-style landing page with login/registration. User data is stored in **A
 
 ```bash
 npm install
+cp .env.example .env
+# Edit .env with your AstraDB and Google OAuth credentials
 npm start
 ```
 
