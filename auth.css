@@ -1,0 +1,125 @@
+/* Auth pages - Login & Register */
+.auth-page {
+  min-height: 100vh;
+  background: var(--netflix-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-logo {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--netflix-red);
+  text-decoration: none;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 48px 40px;
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--netflix-white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.auth-field input::placeholder {
+  color: var(--netflix-gray);
+}
+
+.auth-field input:focus {
+  border-color: var(--netflix-red);
+}
+
+.auth-error {
+  color: #e87c03;
+  font-size: 14px;
+  margin: 0;
+}
+
+.auth-success {
+  color: #46d369;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.auth-divider {
+  text-align: center;
+  color: var(--netflix-gray);
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+.btn--google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #dadce0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn--google:hover {
+  background: #f8f9fa;
+  border-color: #dadce0;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn--block {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+}
+
+.auth-footer {
+  margin-top: 24px;
+  color: var(--netflix-gray-light);
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: var(--netflix-white);
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
