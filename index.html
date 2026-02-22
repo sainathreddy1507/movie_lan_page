@@ -4,98 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>themoive - Watch TV Shows Online, Watch Movies Online</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="wrapper">
-    <!-- Navbar -->
-    <header class="navbar">
-      <div class="navbar__logo">themoive</div>
-      <nav class="navbar__links">
-        <a href="#" class="active">Home</a>
-        <a href="#">TV Shows</a>
-        <a href="#">Movies</a>
-        <a href="#">New & Popular</a>
-        <a href="#">My List</a>
-      </nav>
-      <div class="navbar__actions">
-        <button class="icon-btn" aria-label="Search">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        </button>
-        <button class="icon-btn" aria-label="Notifications">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
-        </button>
-        <div class="navbar__auth" id="authButtons">
-          <a href="/login" class="btn btn--auth">Sign In</a>
-          <a href="/register" class="btn btn--auth btn--auth-primary">Sign Up</a>
-        </div>
-        <div class="navbar__user" id="userSection" style="display: none;">
-          <button type="button" class="btn btn--auth btn--signout" id="signOutBtn">Sign Out</button>
-          <div class="avatar" id="userAvatar">
-            <span class="avatar-fallback" id="avatarLetter">U</span>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-      <div class="hero__bg"></div>
-      <div class="hero__gradient"></div>
-      <div class="hero__content">
-        <h1 class="hero__title" id="heroTitle">Loading...</h1>
-        <p class="hero__description" id="heroDescription"></p>
-        <div class="hero__actions">
-          <button class="btn btn--primary">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            Play
-          </button>
-          <button class="btn btn--secondary">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            More Info
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Movie Rows -->
-    <main class="content">
-      <div id="movieRows"></div>
-    </main>
-  </div>
-
-  <script src="auth.js"></script>
-  <script>
-    (function() {
-      const params = new URLSearchParams(window.location.search);
-      const authToken = params.get('auth_token');
-      if (authToken) {
-        fetch('/api/auth/verify?token=' + encodeURIComponent(authToken))
-          .then(r => r.json())
-          .then(data => {
-            if (data.success && data.user) {
-              localStorage.setItem('user', JSON.stringify(data.user));
-              window.history.replaceState({}, '', '/');
-              location.reload();
-            }
-          });
-        return;
-      }
-      const user = getCurrentUser();
-      const authBtns = document.getElementById('authButtons');
-      const userSection = document.getElementById('userSection');
-      const letter = document.getElementById('avatarLetter');
-      if (user) {
-        authBtns.style.display = 'none';
-        userSection.style.display = 'flex';
-        letter.textContent = (user.username || user.email || 'U').charAt(0).toUpperCase();
-        document.getElementById('signOutBtn').addEventListener('click', logout);
-      }
-    })();
-  </script>
-  <script src="app.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

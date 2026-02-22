@@ -1,11 +1,15 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const path = require('path');
-const crypto = require('crypto');
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import bcrypt from 'bcryptjs';
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import path from 'path';
+import crypto from 'crypto';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,11 +28,17 @@ const memoryStore = new Map();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
 
-async function astraRequest(method, path, body = null) {
+const isProduction = process.env.NODE_ENV === 'production';
+if (isProduction) {
+  app.use(express.static(path.join(__dirname, 'dist')));
+} else {
+  app.use(express.static(path.join(__dirname)));
+}
+
+async function astraRequest(method, apiPath, body = null) {
   if (!ASTRA_API_URL || !ASTRA_TOKEN) return { ok: false, status: 0, data: null };
-  const url = `${ASTRA_API_URL}${path}`;
+  const url = `${ASTRA_API_URL}${apiPath}`;
   const options = {
     method,
     headers: {
@@ -239,10 +249,14 @@ app.get('/api/auth/verify', (req, res) => {
   res.json({ success: true, user });
 });
 
-// Serve pages
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
-app.get('/register', (req, res) => res.sendFile(path.join(__dirname, 'register.html')));
+// Serve React app (SPA) - catch-all for client routes (API/auth handled above)
+const indexPath = isProduction
+  ? path.join(__dirname, 'dist', 'index.html')
+  : path.join(__dirname, 'index.html');
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/auth')) return next();
+  res.sendFile(indexPath);
+});
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);

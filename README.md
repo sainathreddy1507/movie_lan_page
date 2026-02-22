@@ -1,6 +1,6 @@
 # themoive - Movie Landing Page
 
-A Netflix-style landing page with login/registration. User data is stored in **AstraDB**.
+A Netflix-style landing page built with **React** and Vite. Login/registration with **AstraDB** and **Google Sign-In**.
 
 ## Setup
 
@@ -8,10 +8,30 @@ A Netflix-style landing page with login/registration. User data is stored in **A
 npm install
 cp .env.example .env
 # Edit .env with your AstraDB and Google OAuth credentials
-npm start
 ```
 
-Then open `http://localhost:3000`.
+## Development
+
+Run the API server and React dev server in two terminals:
+
+```bash
+# Terminal 1 - API server
+npm run server
+
+# Terminal 2 - React dev server (Vite)
+npm run dev
+```
+
+Open `http://localhost:5173` (Vite proxies API requests to port 3000).
+
+## Production
+
+```bash
+npm run build
+npm run start:prod
+```
+
+Open `http://localhost:3000`.
 
 ## Features
 

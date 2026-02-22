@@ -155,12 +155,6 @@ body {
   justify-content: center;
 }
 
-.avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .avatar-fallback {
   width: 100%;
   height: 100%;
@@ -172,7 +166,7 @@ body {
   background: var(--netflix-red);
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
   position: relative;
   height: 56.25vw;
@@ -193,12 +187,7 @@ body {
 .hero__gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    var(--netflix-black) 0%,
-    transparent 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to top, var(--netflix-black) 0%, transparent 50%, transparent 100%);
 }
 
 .hero__content {
@@ -272,7 +261,7 @@ body {
   background: rgba(109, 109, 110, 0.4);
 }
 
-/* Content / Movie Rows */
+/* Content */
 .content {
   margin-top: -150px;
   padding: 0 0 80px;
@@ -280,7 +269,6 @@ body {
   z-index: 3;
 }
 
-/* Language Bar */
 .language-bar-wrapper {
   padding: 0 4% 24px;
 }
@@ -382,14 +370,8 @@ body {
   word-break: break-word;
 }
 
-/* Loading state */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    var(--netflix-dark) 25%,
-    #2a2a2a 50%,
-    var(--netflix-dark) 75%
-  );
+  background: linear-gradient(90deg, var(--netflix-dark) 25%, #2a2a2a 50%, var(--netflix-dark) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -399,29 +381,132 @@ body {
   100% { background-position: -200% 0; }
 }
 
-/* Responsive */
+/* Auth */
+.auth-page {
+  min-height: 100vh;
+  background: var(--netflix-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-wrapper {
+  width: 100%;
+  max-width: 450px;
+}
+
+.auth-logo {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: var(--netflix-red);
+  text-decoration: none;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 48px 40px;
+}
+
+.auth-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--netflix-white);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.auth-field input:focus {
+  border-color: var(--netflix-red);
+}
+
+.auth-error {
+  color: #e87c03;
+  font-size: 14px;
+  margin: 0;
+}
+
+.auth-success {
+  color: #46d369;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+}
+
+.auth-divider {
+  text-align: center;
+  color: var(--netflix-gray);
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+.btn--google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #dadce0;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn--google:hover {
+  background: #f8f9fa;
+}
+
+.google-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.btn--block {
+  width: 100%;
+  margin-top: 8px;
+  padding: 14px;
+}
+
+.auth-footer {
+  margin-top: 24px;
+  color: var(--netflix-gray-light);
+  font-size: 14px;
+}
+
+.auth-footer a {
+  color: var(--netflix-white);
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
-  .navbar__links {
-    display: none;
-  }
-
-  .hero__content {
-    max-width: 90%;
-  }
-
-  .hero__title {
-    font-size: 5vw;
-  }
-
-  .hero__description {
-    font-size: 3vw;
-  }
-
-  .movie-row__title {
-    font-size: 4vw;
-  }
-
-  .movie-card {
-    min-width: 140px;
-  }
+  .navbar__links { display: none; }
+  .hero__content { max-width: 90%; }
+  .hero__title { font-size: 5vw; }
+  .hero__description { font-size: 3vw; }
+  .movie-row__title { font-size: 4vw; }
+  .movie-card { min-width: 140px; }
 }
